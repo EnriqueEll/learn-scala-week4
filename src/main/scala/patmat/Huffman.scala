@@ -102,10 +102,11 @@ object Huffman {
       case y :: ys => if (leaf.weight <= y.weight) leaf :: list else y :: insert(leaf, ys)
     }
 
-    freqs.head match {
-      case (theChar, theInt) =>
+    freqs match {
+      case (theChar, theInt) :: freqsTail =>
         if (freqs.tail.isEmpty) insert(Leaf(theChar, theInt), List())
-        else insert(Leaf(theChar, theInt), makeOrderedLeafList(freqs.tail))
+        else insert(Leaf(theChar, theInt), makeOrderedLeafList(freqsTail))
+      case List() => List() 
     }
   }
 
@@ -114,7 +115,7 @@ object Huffman {
    */
   def singleton(trees: List[CodeTree]): Boolean = trees match {
     case List() => false
-    case x :: xs => !xs.isEmpty
+    case x :: xs => xs.isEmpty
   }
 
   /**
