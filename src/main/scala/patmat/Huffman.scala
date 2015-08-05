@@ -106,7 +106,7 @@ object Huffman {
       case (theChar, theInt) :: freqsTail =>
         if (freqs.tail.isEmpty) insert(Leaf(theChar, theInt), List())
         else insert(Leaf(theChar, theInt), makeOrderedLeafList(freqsTail))
-      case List() => List() 
+      case List() => List()
     }
   }
 
